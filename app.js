@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
 
         // Example login check
-        if (username === 'user' && password === 'pass') {
+        if (username === 'evalle' && password === 'valletronix') {
             // Redirect to notes.html after successful login
-            window.location.href = 'notes.html'; // Change to your notes page URL
+            window.location.href = 'content.html'; // Change to your notes page URL
         } else {
             alert('Invalid credentials, please try again.');
         }
