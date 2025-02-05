@@ -7,57 +7,31 @@
 </head>
 <body>
     <header>
-      <h2>ERICSSON</h2>
+        <h2>ERICSSON</h2>
     </header>
     
     <section>
-      <nav>
-        <div class="content">
-            <p>RF Intrument</p>
-            <div class="scroll-box">
-                <p>Test station</p>
-                <p>Signal generator</p>
-                <p>Vector Network Analyzer</p>
-                <p>Spectrum Analyzer</p>
+        <nav id="sidebar-container">
+            <!-- Sidebar content will be dynamically loaded based on selected page -->
+        </nav>
+    
+        <article>
+            <div id="page-tabs">
+                <!-- Page tabs dynamically generated here -->
             </div>
-            <p>&nbsp</p>
-            <p>RF Theory</p>
-            <div class="scroll-box">
-                <p>S-Parameters</p>
-                <p>RF Basics</p>
-                <p>Signals and decibel</p>
-                <p>Circulator, Isolator and Coupler</p>
+    
+            <div id="notepad-container">
+                <div id="notepad" contenteditable="true" placeholder="Copy-paste text and images here..."></div>
+                <div class="buttons">
+                    <button id="saveBtn">💾 Save</button>
+                    <button id="clearBtn">🗑 Clear</button>
+                </div>
             </div>
-            <p>&nbsp</p>
-            <p>Coding</p>
-            <div class="scroll-box">
-                <p>Design Pattern</p>
-                <p>Architecture</p>
-                <p>Object oriented Programming</p>
-                <p>C++</p>
-                <p>Python</p>
-                <p>HTML</p>
-                <p>Javascript</p>
-                <p>CSS</p>
-            </div>
-        </div>
-      </nav>
-      
-      <article>
-        <p>&nbsp</p>
-        <h1>&nbsp &nbsp &nbsp EMBEDDED TEST SOFTWARE ENGINEER NOTES</h1>
-        <div id="notepad-container">
-            <div id="notepad" contenteditable="true" placeholder="Copy-paste text and images here..."></div>
-            <div class="buttons">
-                <button id="saveBtn">💾 Save</button>
-                <button id="clearBtn">🗑 Clear</button>
-            </div>
-        <p></p>
-      </article>
+        </article>
     </section>
     
     <footer>
-      <p>EV</p>
+        <p>EV</p>
     </footer>
     <link rel="stylesheet" href="../css/contentstyle.css">
     <script src="../js/contentapp.js"></script>
