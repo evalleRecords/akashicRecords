@@ -4,11 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes Page</title>
-    <link rel="stylesheet" href="css/contentstyle.css">
 </head>
 <body>
-    <h1>Welcome to Your Notes!</h1>
-    <p>This is the notes page, where you can access all your notes.</p>
-    <a href="pages/login.html">Back to Login</a>
-</body>
-</html>
+    <header>
+      <h2>ERICSSON</h2>
+    </header>
+    
+    <section>
+      <nav>
+        <div class="content">
+            <p>RF Intrument</p>
+            <div class="scroll-box">
+                <p>Test station</p>
+                <p>Signal generator</p>
+                <p>Vector Network Analyzer</p>
+                <p>Spectrum Analyzer</p>
+            </div>
+            <p>&nbsp</p>
+            <p>RF Theory</p>
+            <div class="scroll-box">
+                <p>S-Parameters</p>
+                <p>RF Basics</p>
+                <p>Signals and decibel</p>
+                <p>Circulator, Isolator and Coupler</p>
+            </div>
+            <p>&nbsp</p>
+            <p>Coding</p>
+            <div class="scroll-box">
+                <p>Design Pattern</p>
+                <p>Architecture</p>
+                <p>Object oriented Programming</p>
+                <p>C++</p>
+                <p>Python</p>
+                <p>HTML</p>
+                <p>Javascript</p>
+                <p>CSS</p>
+            </div>
+        </div>
+      </nav>
+      
+      <article>
+        <p>&nbsp</p>
+        <h1>&nbsp &nbsp &nbsp EMBEDDED TEST SOFTWARE ENGINEER NOTES</h1>
+        <div id="notepad-container">
+            <div id="notepad" contenteditable="true" placeholder="Copy-paste text and images here..."></div>
+            <div class="buttons">
+                <button id="saveBtn">💾 Save</button>
+                <button id="clearBtn">🗑 Clear</button>
+            </div>
+        <p></p>
+      </article>
+    </section>
+    
+    <footer>
+      <p>EV</p>
+    </footer>
+    <link rel="stylesheet" href="../css/contentstyle.css">
+    <script src="../js/contentapp.js"></script>
+    </body>
+    </html>

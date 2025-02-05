@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Example login check
         if (username === 'evalle' && password === 'valletronix') {
             // Redirect to notes.html after successful login
-            window.location.href = 'pages/content.html'; // Change to your notes page URL
+            window.location.href = '../pages/content.html'; // Change to your notes page URL
         } else {
             alert('Invalid credentials, please try again.');
         }
