@@ -1,0 +1,7 @@
+{
+    "Console App": "C:/Program Files/Microsoft Visual Studio/2022/Professional/Common7/IDE/devenv.exe",
+    "FAAP proxy client": "C:/path/to/FAAPProxyClient.exe",
+    "GRPC FAAP proxy": "C:/path/to/GRPCFAAPProxy.exe",
+    "Power supply control": "C:/path/to/PowerSupplyControl.exe",
+    "Spectrum Analyzer control": "C:/path/to/SpectrumAnalyzerControl.exe"
+}

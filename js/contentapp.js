@@ -87,7 +87,8 @@ function switchPage(page) {
 // Function to update sidebar for "Test Setup" and display buttons in the main content
 function updateSidebarTestSetup(page) {
     if (!sidebarContainer) return;
-    sidebarContainer.innerHTML = '';
+    sidebarContainer.innerHTML = ''; // Clear the sidebar
+
     const sidebarItems = Object.keys(pagesData[page].sidebar);
     const scrollBox = document.createElement('div');
     scrollBox.classList.add('scroll-box');
@@ -95,18 +96,32 @@ function updateSidebarTestSetup(page) {
     sidebarItems.forEach(item => {
         const sidebarItem = document.createElement('div');
         sidebarItem.classList.add('sidebar-item');
-        sidebarItem.innerText = item;
 
-        sidebarItem.onclick = function () {
-            displayAppControls(item);
+        // Create a span for the item name
+        const itemName = document.createElement('span');
+        itemName.innerText = item;
+
+        // Create an "Open" button
+        const openAppBtn = document.createElement('button');
+        openAppBtn.innerText = '🚀 Open';
+        openAppBtn.classList.add('control-btn');
+        
+        // Add functionality for the "Open" button
+        openAppBtn.onclick = function () {
+            openApplication(item);  // Function that opens the application
         };
 
-        scrollBox.appendChild(sidebarItem);
+        // Append the item name and button together in the sidebar item
+        sidebarItem.appendChild(itemName);
+        sidebarItem.appendChild(openAppBtn);  // Add the "Open" button
+
+        scrollBox.appendChild(sidebarItem); // Add to scroll box
     });
 
-    sidebarContainer.appendChild(scrollBox);
+    sidebarContainer.appendChild(scrollBox); // Add the scroll box to the sidebar
 }
-    // Function to display Browse and Open buttons in the main content
+
+// Function to display Open button in the main content
 function displayAppControls(item) {
     if (!mainContent) return;
 
@@ -115,32 +130,74 @@ function displayAppControls(item) {
     const title = document.createElement('h2');
     title.innerText = `Setup: ${item}`;
 
-    const selectDirBtn = document.createElement('button');
-    selectDirBtn.innerText = '📂 Browse';
-    selectDirBtn.classList.add('control-btn');
-    selectDirBtn.onclick = function () {
-        selectDirectory(item);
-    };
-
+    // Create the Open button
     const openAppBtn = document.createElement('button');
     openAppBtn.innerText = '🚀 Open';
     openAppBtn.classList.add('control-btn');
+
+    // Add functionality for the Open button
     openAppBtn.onclick = function () {
-        openApplication(item);
+        openApplication(item);  // Call the function to open the application
     };
 
-    mainContent.appendChild(title);
-    mainContent.appendChild(selectDirBtn);
-    mainContent.appendChild(openAppBtn);
-}
-// Function to select a directory (Requires backend for actual functionality)
-function selectDirectory(item) {
-    alert(`Selecting directory for: ${item}\n(This requires backend support to browse directories!)`);
+    mainContent.appendChild(title); // Add the title
+    mainContent.appendChild(openAppBtn);  // Add the Open button
 }
 
-// Function to open the selected application (Requires backend for actual execution)
+let selectedFilePath = null;  // Variable to store the selected file path
+
+// Function to browse and select a file
+function selectDirectory(item) {
+    fetch('http://127.0.0.1:8000/select-directory', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            selectedFilePath = data.file_path;  // Save the selected file path
+            alert(`Selected File: ${selectedFilePath}`);
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to open the selected application
+// Function to open the selected application
 function openApplication(item) {
-    alert(`Opening application: ${item}\n(This requires backend support to execute files!)`);
+    // First, retrieve the saved path for the item
+    fetch(`http://127.0.0.1:8000/get_saved_path?item=${item}`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success' && data.path) {
+            const path = data.path;  // Get the path from the response
+
+            // Now, send a request to open the application
+            fetch('http://127.0.0.1:8000/open_application', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    item: item,
+                    path: path
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);  // Display success message
+                } else {
+                    alert(data.message);  // Display error message
+                }
+            })
+            .catch(error => {
+                alert('Error opening application: ' + error);
+            });
+        } else {
+            alert(data.message || 'No saved path for this item!');
+        }
+    })
+    .catch(error => {
+        alert('Error fetching saved path: ' + error);
+    });
 }
 
 // Function to update sidebar content for NOTES and LINKS
